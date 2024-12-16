@@ -32,7 +32,7 @@ jobs:
       run: |
         newman run postman-request.json \
           --env-var "HOST=${{ secrets.HOST }}" \
-          --env-var "BASIC_USER=${{ secrets.REFRESH_TOKEN }}" \
-          --env-var "BASIC_PASSWORD=${{ secrets.REFRESH_TOKEN }}" \
-          --env-var "AUTH_TOKEN=${{ secrets.REFRESH_TOKEN }}" \
+          --env-var "BASIC_USER=${{ secrets.BASIC_USER }}" \
+          --env-var "BASIC_PASSWORD=${{ secrets.BASIC_PASSWORD }}" \
+          --env-var "AUTH_TOKEN=${{ secrets.AUTH_TOKEN }}" \
           --reporters cli
