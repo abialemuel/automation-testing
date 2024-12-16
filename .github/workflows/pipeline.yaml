@@ -1,0 +1,38 @@
+name: Run Postman Collection
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  postman-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Install Node.js and Newman
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install Newman
+      run: npm install -g newman
+
+    # Run the Postman collection
+    - name: Run Postman collection
+      env:
+        HOST: ${{ secrets.HOST }}
+        REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+      run: |
+        newman run path/to/your-collection.postman_collection.json \
+          --env-var "HOST=${{ secrets.HOST }}" \
+          --env-var "BASIC_USER=${{ secrets.REFRESH_TOKEN }}" \
+          --env-var "BASIC_PASSWORD=${{ secrets.REFRESH_TOKEN }}" \
+          --env-var "AUTH_TOKEN=${{ secrets.REFRESH_TOKEN }}" \
+          --reporters cli
