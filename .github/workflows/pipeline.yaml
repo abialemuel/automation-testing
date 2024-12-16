@@ -30,7 +30,7 @@ jobs:
         HOST: ${{ secrets.HOST }}
         REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
       run: |
-        newman run path/to/your-collection.postman_collection.json \
+        newman run postman-request.json \
           --env-var "HOST=${{ secrets.HOST }}" \
           --env-var "BASIC_USER=${{ secrets.REFRESH_TOKEN }}" \
           --env-var "BASIC_PASSWORD=${{ secrets.REFRESH_TOKEN }}" \
